@@ -19,30 +19,20 @@ const { width, height } = Dimensions.get("window");
 const Cart = () => {
   const { clearCart, cartList } = useContext(CartContext);
   return (
-    <View
-      style={
-        {
-          // paddingHorizontal: 10,
-          // paddingVertical: 10,
-          // flex: 1,
-          // justifyContent: "space-between",
-        }
-      }
-    >
+    <View>
       <View style={{ height: height * 0.35 }}>
         <CartDashBoard />
       </View>
-      <ScrollView>
+      <ScrollView style={{ marginBottom: 300 }}>
         <View
           style={{
-            height: height * 0.57,
             justifyContent: "space-between",
             paddingHorizontal: 10,
           }}
         >
           <CartList />
           {cartList?.length > 0 && (
-            <View style={{ width: "100%", marginTop: 0 }}>
+            <View style={{ width: "100%", marginTop: 10 }}>
               <LinearGradient
                 colors={["#EA2027", "#EA2027", "#EE5A24"]}
                 style={styles.gradienWrapper}

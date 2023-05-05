@@ -4,7 +4,7 @@ const CartContext = createContext();
 const CartContextProvider = ({ children }) => {
   const [cartList, setCartList] = useState([]);
   const [cartCost, setCartCost] = useState(0);
-  const [cartCounter, setCartCounter] = useState(0);
+  const [numberOfKilos, setNumberOfKilos] = useState(1);
   const [currentCartID, setCurrentCartId] = useState(0);
   //
   const checkIfCartExist = (item) => {
@@ -12,9 +12,6 @@ const CartContextProvider = ({ children }) => {
       (cartItem) => cartItem?.id === item?.id
     );
     if (itemIndex === -1) {
-      // // item does not exist in cart, add it to the cart
-      // setCartList([...cartList, item]);
-      // incrementCartCost(item)
       return true;
     } else {
       return false;
@@ -24,6 +21,7 @@ const CartContextProvider = ({ children }) => {
   const addToCart = (item) => {
     // setCartList([...cartList, { ...item, inCart: true }]);
     //
+
     checkIfCartExist(item)
       ? setCartList([...cartList, item])
       : console.log("Already Exist in Cart!!");
@@ -34,10 +32,16 @@ const CartContextProvider = ({ children }) => {
   //
   const incrementCartCost = (item) => {
     checkIfCartExist(item)
-      ? setCartCost(cartCost + item?.pricePerKg)
+      ? setCartCost((prev) => prev + item.pricePerKg)
       : console.log("Already Exist in Cart!!");
   };
-  console.log(cartCost);
+  //
+  const incrementNumberOfKilos = (item) => {
+    cartList?.map((cart) => {
+      cart.id === item.id ? (cart.numberOfKilos += 1) : cart.numberOfKilos;
+    });
+    setCartCost((prev) => item?.pricePerKg + prev);
+  };
   //
   const decrementCartCost = (item) => {};
   //
@@ -55,12 +59,14 @@ const CartContextProvider = ({ children }) => {
     incrementCartCost: (item) => {
       incrementCartCost(item);
     },
+    incrementNumberOfKilos: (item) => {
+      incrementNumberOfKilos(item);
+    },
     clearCart: () => {
       clearCart();
     },
     cartList: cartList,
     currentCartID: currentCartID,
-    cartCounter: cartCounter,
     cartCost: cartCost,
   };
   return (

@@ -5,7 +5,8 @@ import FruitsCard from "./FruitsCard";
 import { CartContext } from "../../Context/CartContext";
 
 const FruitsList = () => {
-  const { addToCart, cartList, incrementCartCost } = useContext(CartContext);
+  const { addToCart, cartList, incrementCartCost, incrementNumberOfKilos } =
+    useContext(CartContext);
   const handleAddToCart = (item) => {
     addToCart(item);
   };
@@ -33,6 +34,7 @@ const FruitsList = () => {
               addToCart={addToCart}
               handleAddToCart={handleAddToCart}
               incrementCartCost={incrementCartCost}
+              incrementNumberOfKilos={incrementNumberOfKilos}
             />
           </>
         ))}

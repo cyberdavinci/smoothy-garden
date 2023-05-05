@@ -12,7 +12,12 @@ import { CartContext } from "../../Context/CartContext";
 //
 import { LinearGradient } from "expo-linear-gradient";
 const { width, height } = Dimensions.get("window");
-const FruitsCard = ({ food, handleAddToCart, incrementCartCost }) => {
+const FruitsCard = ({
+  food,
+  handleAddToCart,
+  incrementCartCost,
+  incrementNumberOfKilos,
+}) => {
   //
   const { cartList, currentCartID } = useContext(CartContext);
   //
@@ -69,6 +74,7 @@ const FruitsCard = ({ food, handleAddToCart, incrementCartCost }) => {
             onPress={() => {
               handleAddToCart(food);
               incrementCartCost(food);
+              // incrementNumberOfKilos(food);
             }}
           >
             <Text style={styles.btnText}>Add to Cart</Text>
