@@ -11,7 +11,8 @@ import { CartContext } from "../../Context/CartContext";
 //
 import CartCard from "./CartCard";
 const CartList = () => {
-  const { cartList, incrementNumberOfKilos } = useContext(CartContext);
+  const { cartList, incrementNumberOfKilos, decrementNumberOfKilos } =
+    useContext(CartContext);
   return (
     <View>
       {/* <View style={{ marginVertical: 10 }}>
@@ -25,12 +26,15 @@ const CartList = () => {
               cartItem={cartItem}
               key={cartItem?.id}
               incrementNumberOfKilos={incrementNumberOfKilos}
+              decrementNumberOfKilos={decrementNumberOfKilos}
             />
           </>
         ))
       ) : (
         <View style={{ marginVertical: 10 }}>
-          <Text style={{ fontSize: 22, fontWeight: "bold" }}>Carts Empty</Text>
+          <Text style={{ fontSize: 22, fontWeight: "bold" }}>
+            Your Cart's Empty
+          </Text>
         </View>
       )}
     </View>

@@ -3,7 +3,7 @@ import React, { useState, createContext } from "react";
 const CartContext = createContext();
 const CartContextProvider = ({ children }) => {
   const [cartList, setCartList] = useState([]);
-  const [cartCost, setCartCost] = useState(0);
+  const [cartCost, setCartCost] = useState(0.0);
   const [numberOfKilos, setNumberOfKilos] = useState(1);
   const [currentCartID, setCurrentCartId] = useState(0);
   //
@@ -43,6 +43,21 @@ const CartContextProvider = ({ children }) => {
     setCartCost((prev) => item?.pricePerKg + prev);
   };
   //
+  const removeFromListIfNumberOfKilosIsZero = () => {
+    const filterOutItemsWithZeroKilo = cartList.filter(
+      (cart) => cart.numberOfKilos !== 0
+    );
+    setCartList([...filterOutItemsWithZeroKilo]);
+  };
+  //
+  const decrementNumberOfKilos = (item) => {
+    cartList.map((cart) => {
+      cart.id === item.id ? (cart.numberOfKilos -= 1) : cart.numberOfKilos;
+    });
+    setCartCost((prev) => prev - item?.pricePerKg);
+    removeFromListIfNumberOfKilosIsZero();
+  };
+  //
   const decrementCartCost = (item) => {};
   //
   const removeFromCart = (item) => {};
@@ -61,6 +76,9 @@ const CartContextProvider = ({ children }) => {
     },
     incrementNumberOfKilos: (item) => {
       incrementNumberOfKilos(item);
+    },
+    decrementNumberOfKilos: (item) => {
+      decrementNumberOfKilos(item);
     },
     clearCart: () => {
       clearCart();

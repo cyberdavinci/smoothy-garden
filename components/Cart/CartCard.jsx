@@ -9,7 +9,11 @@ import {
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 const { width, height } = Dimensions.get("window");
-const CartCard = ({ cartItem, incrementNumberOfKilos }) => {
+const CartCard = ({
+  cartItem,
+  incrementNumberOfKilos,
+  decrementNumberOfKilos,
+}) => {
   return (
     <View>
       <View style={styles.card}>
@@ -27,6 +31,7 @@ const CartCard = ({ cartItem, incrementNumberOfKilos }) => {
               backgroundColor: "#fff",
               borderRadius: 10,
               alignItems: "center",
+              paddingBottom: 10,
               // width: "100%",
             }}
           >
@@ -35,8 +40,17 @@ const CartCard = ({ cartItem, incrementNumberOfKilos }) => {
               style={{ width: 170, height: 120 }}
             />
           </View>
-          <View>
-            <Text>Number of Kilos {cartItem.numberOfKilos}</Text>
+          <View style={{}}>
+            <Text
+              style={{
+                fontSize: 17,
+                paddingTop: 15,
+                fontWeight: "600",
+                color: "green",
+              }}
+            >
+              Number of Kilos {cartItem.numberOfKilos}
+            </Text>
           </View>
         </View>
         <View style={styles.textsWrapper}>
@@ -85,7 +99,7 @@ const CartCard = ({ cartItem, incrementNumberOfKilos }) => {
             <Pressable
               style={styles.btn}
               onPress={() => {
-                // incrementCartCost(cartItem);
+                decrementNumberOfKilos(cartItem);
               }}
             >
               <Text style={styles.btnText}>-</Text>
