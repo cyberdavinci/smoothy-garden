@@ -1,18 +1,24 @@
 const foodCategory = [
   {
     name: "Fruits",
-    image: require("../assets/images/fruits.png"),
+    image: require("../assets/images/orange.png"),
     amountAvailable: 335,
+    id: 1,
+    gradient: ["#ea835a", "#ff692e"],
   },
   {
     name: "Vegetables",
-    image: require("../assets/images/vegetables.png"),
+    image: require("../assets/images/tomatoes.png"),
     amountAvailable: 1243,
+    id: 2,
+    gradient: ["#db1200", "#fe3c2a"],
   },
   {
     name: "Poultry",
     image: require("../assets/images/poultry.png"),
     amountAvailable: 300,
+    id: 3,
+    gradient: ["#dd480c", "#e5540c"],
   },
 ];
 
@@ -29,6 +35,8 @@ const FOODS = [
     popular: true,
     inStock: true,
     inCart: false,
+    color: "rgba(251, 216, 146, 1)",
+    gradient: ["#D4145A", "#FBB03B"],
     reviews: [
       {
         reviewer_id: 101,
@@ -39,6 +47,7 @@ const FOODS = [
       },
     ],
     average_rating: 4.0,
+    // gradient:["",""]
   },
   {
     id: 2,
@@ -48,6 +57,7 @@ const FOODS = [
     numberOfKilos: 1,
     unitPrice: "N/A",
     category: "vegetable",
+    gradient: ["#DD2476", "#FF512F"],
     popular: true,
     inStock: true,
     inCart: false,
@@ -70,6 +80,7 @@ const FOODS = [
     numberOfKilos: 1,
     unitPrice: "N/A",
     category: "vegetable",
+    gradient: ["#11998E", "#38EF7D"],
     popular: false,
     inStock: true,
     inCart: false,
@@ -152,6 +163,7 @@ const FOODS = [
     numberOfKilos: 1,
     unitPrice: "N/A",
     category: "fruit",
+    gradient: ["#FFC371", "#FF5F6D"],
     popular: true,
     inStock: true,
     inCart: false,
@@ -174,6 +186,7 @@ const FOODS = [
     numberOfKilos: 1,
     unitPrice: "N/A",
     category: "fruit",
+    gradient: ["#f7b56b", "#f27f59"],
     popular: true,
     inStock: true,
     inCart: false,
@@ -194,6 +207,7 @@ const FOODS = [
     image: require("../assets/images/strawberries.png"),
     pricePerKg: 400,
     numberOfKilos: 1,
+    gradient: ["#ff75cc", "#ff2424"],
     unitPrice: "N/A",
     category: "fruit",
     popular: false,

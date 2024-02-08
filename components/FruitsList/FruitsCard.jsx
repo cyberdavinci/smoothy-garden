@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Image,
   Pressable,
+  TouchableOpacity,
 } from "react-native";
 //
 import { CartContext } from "../../Context/CartContext";
@@ -22,86 +23,67 @@ const FruitsCard = ({
   const { cartList, currentCartID } = useContext(CartContext);
   //
   const cartItem = cartList[food?.id];
-
+  const isEven = food?.id % 2 == 0;
+  const isOdd = food?.id % 2 != 0;
   //
+
   return (
-    <View style={styles.card}>
-      <View
+    <View
+      style={[
+        styles.card,
+        isEven
+          ? { flex: 1, height: height * 0.3 }
+          : { flex: 2, height: height * 0.4 },
+      ]}
+    >
+      <LinearGradient
+        colors={food.gradient}
         style={{
-          backgroundColor: "#ECEBE1",
           width: "100%",
-          marginBottom: 10,
-          padding: 10,
-          borderTopRightRadius: 20,
+          height: "100%",
+          borderRadius: 10,
+          justifyContent: "space-around",
         }}
       >
-        <View
-          style={{
-            backgroundColor: "#fff",
-            borderRadius: 10,
-            alignItems: "center",
-            // width: "100%",
-          }}
-        >
-          <Image source={food.image} style={{ width: 150, height: 120 }} />
+        <Text style={[styles.foodName, { color: "#fff" }]}>{food.name}</Text>
+        <Image
+          source={food.image}
+          style={{ width: "100%", height: "60%", resizeMode: "contain" }}
+        />
+        <View style={styles.content}>
+          {/* <Text style={styles.foodName}>{food.name}</Text> */}
+          <Text style={styles.foodPrice}>GMD {food.pricePerKg}/kg</Text>
+          <TouchableOpacity style={[styles.add_to_cart_btn]}>
+            <LinearGradient
+              colors={food.gradient}
+              style={{ width: "100%", borderRadius: 5, paddingHorizontal: 10 }}
+            >
+              <Text style={styles.add_to_cart_text}>Buy</Text>
+            </LinearGradient>
+          </TouchableOpacity>
+          {/* <Text style={styles.foodPrice}>GMD{food.unitPrice}</Text> */}
         </View>
-      </View>
-      <View style={styles.textsWrapper}>
-        <Text style={styles.foodName}>{food.name}</Text>
-        {/* Food prices */}
-        <View style={styles.priceWrapper}>
-          <View style={{ flexDirection: "row" }}>
-            <Text style={styles.foodPrice}>D{food.pricePerKg}</Text>
-            <Text>/</Text>
-            <Text>kg</Text>
-          </View>
-          <View style={{ flexDirection: "row", columnGap: 10 }}>
-            <Text>Unit Price</Text>
-            <Text style={styles.foodPrice}>
-              {food.unitPrice !== "N/A" ? `D${food.unitPrice}` : "-"}
-            </Text>
-          </View>
-        </View>
-      </View>
-      {/* add to cart button */}
-      <View style={{ width: "100%" }}>
-        <LinearGradient
-          colors={["#4c669f", "#3b5998", "#192f6a"]}
-          style={styles.gradienWrapper}
-        >
-          <Pressable
-            style={styles.btn}
-            onPress={() => {
-              handleAddToCart(food);
-              incrementCartCost(food);
-              // incrementNumberOfKilos(food);
-            }}
-          >
-            <Text style={styles.btnText}>Add to Cart</Text>
-          </Pressable>
-        </LinearGradient>
-      </View>
+      </LinearGradient>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: "#ECEBE1",
-
-    // marginLeft: 10,
-    width: width * 0.45,
-    height: 250,
-    justifyContent: "space-evenly",
-    alignItems: "center",
-    // borderRadius: 10,
-  },
-  biggerCard: {
-    // width: "100%",
-    backgroundColor: "#ECEBE1",
-    borderBottomLeftRadius: 20,
+    justifyContent: "center",
+    // alignItems: "center",
     borderTopRightRadius: 20,
-    flexDirection: "row",
+    margin: 5,
+    borderRadius: 10,
+    // shadowColor: "#333",
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 10,
+    // },
+    // shadowOpacity: 0.3,
+    // shadowRadius: 13.16,
+
+    // elevation: 10,
   },
   textsWrapper: {
     // backgroundColor: "#000",
@@ -117,12 +99,14 @@ const styles = StyleSheet.create({
   foodName: {
     fontSize: 16,
     fontWeight: "900",
-    paddingBottom: 10,
+    paddingLeft: 10,
   },
   foodPrice: {
-    fontWeight: "500",
-    color: "#336A6E",
-    fontSize: 16,
+    fontWeight: "600",
+    paddingLeft: 10,
+    color: "#fff",
+    // color: "#336A6E",
+    // fontSize: 1,
   },
   gradienWrapper: {
     width: "100%",
@@ -139,6 +123,21 @@ const styles = StyleSheet.create({
   btnText: {
     color: "#fff",
     textAlign: "center",
+  },
+  content: {
+    flexDirection: "row",
+    gap: 10,
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  add_to_cart_btn: {
+    padding: 3,
+    borderRadius: 10,
+    padding: 5,
+  },
+  add_to_cart_text: {
+    fontWeight: "700",
+    color: "#fff",
   },
 });
 

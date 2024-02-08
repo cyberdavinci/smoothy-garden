@@ -1,14 +1,17 @@
+import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
-import { Image, Text, View, StyleSheet } from "react-native";
-
+import { Image, Text, View, StyleSheet, Dimensions } from "react-native";
+const { width, height } = Dimensions.get("screen");
 const CategoryCard = ({ category }) => {
   return (
-    <View style={styles.card}>
-      <Image source={category.image} style={{ width: 120, height: 120 }} />
-      <View style={styles.textContainer}>
-        <Text style={styles.name}>{category.name}</Text>
-        <Text style={styles.amount}>{category.amountAvailable} products</Text>
-      </View>
+    <View>
+      <LinearGradient style={[styles.card]} colors={category.gradient}>
+        <Text style={styles.category_name}>{category.name}</Text>
+        <Image
+          source={category.image}
+          style={{ width: "100%", height: "100%", resizeMode: "contain" }}
+        />
+      </LinearGradient>
     </View>
   );
 };
@@ -18,12 +21,22 @@ const styles = StyleSheet.create({
     backgroundColor: "#ECEBE1",
     padding: 10,
     marginLeft: 5,
-    width: 200,
-    height: 200,
+    width: width * 0.75,
+
+    height: height * 0.3,
     justifyContent: "center",
-    alignItems: "center",
+    // alignItems: "center",
+
     borderRadius: 20,
   },
+  category_name: {
+    marginLeft: 10,
+    marginTop: 10,
+    fontWeight: "900",
+    fontSize: 16,
+    color: "#fff",
+  },
+
   textContainer: {
     backgroundColor: "#fff",
     width: 150,

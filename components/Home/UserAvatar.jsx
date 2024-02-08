@@ -1,19 +1,12 @@
 import React from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, StyleSheet } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 
 const UserAvatar = () => {
   return (
-    <View
-      style={{
-        flexDirection: "row",
-        justifyContent: "space-between",
-        // paddingHorizontal: 10,
-        paddingTop: 5,
-      }}
-    >
+    <View style={styles.container}>
       <View>
-        <Text>Hello Mate!</Text>
+        <Text style={styles.title}>Howdy, smoothy?</Text>
       </View>
       <View>
         <FontAwesome5 name="user-circle" size={34} color="black" />
@@ -22,4 +15,16 @@ const UserAvatar = () => {
   );
 };
 
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+
+    paddingTop: 5,
+  },
+  title: {
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+});
 export default UserAvatar;
