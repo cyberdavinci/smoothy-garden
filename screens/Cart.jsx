@@ -30,7 +30,7 @@ const Cart = () => {
             paddingHorizontal: 10,
           }}
         >
-          <CartList />
+          <CartList cartList={cartList} />
           {cartList?.length > 0 && (
             <View style={{ width: "100%", marginTop: 10 }}>
               <LinearGradient

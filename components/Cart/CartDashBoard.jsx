@@ -3,12 +3,16 @@ import { Text, View, StyleSheet, Pressable } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { CartContext } from "../../Context/CartContext";
 import { AntDesign } from "@expo/vector-icons";
-
+import { FOODS } from "../../data/products";
 const CartDashBoard = () => {
-  //   const [cartCost, setCartCost] = useState(0);
+  const [cartCostAmount, setCartCost] = useState(0);
 
   const { cartList, cartCost } = useContext(CartContext);
-
+  // console.log(cartList);
+  // console.log(FOODS[0]);
+  // useEffect(() => {
+  //   setCartCost(cartCost);
+  // }, [cartList]);
   return (
     <View style={{ height: "100%" }}>
       <LinearGradient

@@ -13,19 +13,16 @@ import { CartContext } from "../../Context/CartContext";
 //
 import { LinearGradient } from "expo-linear-gradient";
 const { width, height } = Dimensions.get("window");
-const FruitsCard = ({
-  food,
-  handleAddToCart,
-  incrementCartCost,
-  incrementNumberOfKilos,
-}) => {
+
+const FruitsCard = ({ food }) => {
+  // console.log(food?.numberOfKilos);
+  const { currentCartID, addToCart } = useContext(CartContext);
   //
-  const { cartList, currentCartID } = useContext(CartContext);
-  //
-  const cartItem = cartList[food?.id];
+  // const cartItem = cartList[food?.id];
   const isEven = food?.id % 2 == 0;
   const isOdd = food?.id % 2 != 0;
   //
+  // console.log(cartList);r
 
   return (
     <View
@@ -53,7 +50,10 @@ const FruitsCard = ({
         <View style={styles.content}>
           {/* <Text style={styles.foodName}>{food.name}</Text> */}
           <Text style={styles.foodPrice}>GMD {food.pricePerKg}/kg</Text>
-          <TouchableOpacity style={[styles.add_to_cart_btn]}>
+          <TouchableOpacity
+            style={[styles.add_to_cart_btn]}
+            onPress={() => addToCart(food)}
+          >
             <LinearGradient
               colors={food.gradient}
               style={{ width: "100%", borderRadius: 5, paddingHorizontal: 10 }}

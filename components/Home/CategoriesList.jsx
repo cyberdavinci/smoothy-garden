@@ -12,7 +12,7 @@ const CategoriesList = () => {
       <View style={{ flexDirection: "row", columnGap: 10 }}>
         {foodCategory.map((category, index) => (
           <>
-            <CategoryCard category={category} key={category.id} />
+            <CategoryCard category={category} key={index.toString()} />
           </>
         ))}
       </View>

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Text, View, ScrollView, Dimensions } from "react-native";
 import { FOODS } from "../../data/products";
 import FruitsCard from "./FruitsCard";
@@ -9,11 +9,12 @@ import { FlashList } from "@shopify/flash-list";
 import { MasonryFlashList } from "@shopify/flash-list";
 const { height, width } = Dimensions.get("screen");
 const FruitsList = () => {
-  const { addToCart, cartList, incrementCartCost, incrementNumberOfKilos } =
-    useContext(CartContext);
-  const handleAddToCart = (item) => {
-    addToCart(item);
-  };
+  const { addToCart, cartList } = useContext(CartContext);
+  const [foods, setFoods] = useState([...FOODS]);
+  // const handleAddToCart = (item) => {
+  //   addToCart(item);
+  // };
+  console.log(foods[0]);
   return (
     <View>
       <View style={{ marginVertical: 10 }}>
@@ -31,16 +32,13 @@ const FruitsList = () => {
         }}
       >
         <MasonryFlashList
-          data={FOODS}
+          data={foods}
           numColumns={2}
           renderItem={({ item }) => (
             <FruitsCard
               food={item}
               // key={item.name}
               addToCart={addToCart}
-              handleAddToCart={handleAddToCart}
-              incrementCartCost={incrementCartCost}
-              incrementNumberOfKilos={incrementNumberOfKilos}
             />
           )}
           estimatedItemSize={200}

@@ -23,7 +23,7 @@ const CartContextProvider = ({ children }) => {
     //
 
     checkIfCartExist(item)
-      ? setCartList([...cartList, item])
+      ? (setCartList([...cartList, item]), incrementCartCost(item))
       : console.log("Already Exist in Cart!!");
     // setCurrentCartId(item.id);
   };
@@ -37,30 +37,55 @@ const CartContextProvider = ({ children }) => {
   };
   //
   const incrementNumberOfKilos = (item) => {
-    cartList?.map((cart) => {
-      cart.id === item.id ? (cart.numberOfKilos += 1) : cart.numberOfKilos;
-    });
-    setCartCost((prev) => item?.pricePerKg + prev);
-  };
-  //
-  const removeFromListIfNumberOfKilosIsZero = () => {
-    const filterOutItemsWithZeroKilo = cartList.filter(
-      (cart) => cart.numberOfKilos !== 0
+    const indexofItemToIncrement = cartList.findIndex(
+      (cart) => cart?.id === item?.id
     );
-    setCartList([...filterOutItemsWithZeroKilo]);
+
+    if (indexofItemToIncrement !== -1) {
+      // Create a shallow copy of the cartList
+      const updatedCartList = [...cartList];
+      const itemToIncrement = updatedCartList[indexofItemToIncrement];
+
+      // Update the kilos for the specific item
+      itemToIncrement.numberOfKilos += 1;
+
+      // Calculate the new cart cost
+      const newCartCost = item.pricePerKg + cartCost;
+      setCartCost(newCartCost);
+
+      // Update the state with the new cartList
+      setCartList(updatedCartList);
+    } else {
+      console.log("Item not found");
+    }
   };
+
+  //
+  // const removeFromListIfNumberOfKilosIsZero = (item) => {
+  //   const newList = cartList.filter((cart) => item?.id != cart?.id);
+  //   setCartList([...newList]);
+  // };
   //
   const decrementNumberOfKilos = (item) => {
-    cartList.map((cart) => {
-      cart.id === item.id ? (cart.numberOfKilos -= 1) : cart.numberOfKilos;
+    cartList?.map((cart) => {
+      cart.id === item.id
+        ? cart?.numberOfKilos >= 2
+          ? ((cart.numberOfKilos -= 1),
+            setCartCost((prev) => prev - cart?.pricePerKg))
+          : console.log("Cannot go down!")
+        : cart.numberOfKilos;
     });
-    setCartCost((prev) => prev - item?.pricePerKg);
-    removeFromListIfNumberOfKilosIsZero();
+    // setCartList([...newCartList]);
+    // setCartCost((prev) => prev - item?.pricePerKg);
+    // removeFromListIfNumberOfKilosIsZero();
   };
   //
   const decrementCartCost = (item) => {};
   //
-  const removeFromCart = (item) => {};
+  const removeFromCart = (item) => {
+    const newList = cartList.filter((cart) => item?.id != cart?.id);
+    setCartList([...newList]);
+  };
   //
   const clearCart = () => {
     setCartList([]);
@@ -82,6 +107,9 @@ const CartContextProvider = ({ children }) => {
     },
     clearCart: () => {
       clearCart();
+    },
+    removeFromCart: (item) => {
+      removeFromCart(item);
     },
     cartList: cartList,
     currentCartID: currentCartID,

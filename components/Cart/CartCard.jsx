@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Text,
   View,
@@ -9,11 +9,17 @@ import {
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 const { width, height } = Dimensions.get("window");
-const CartCard = ({
-  cartItem,
-  incrementNumberOfKilos,
-  decrementNumberOfKilos,
-}) => {
+import { CartContext } from "../../Context/CartContext";
+import { FOODS } from "../../data/products";
+const CartCard = ({ cartItem }) => {
+  const { incrementNumberOfKilos, decrementNumberOfKilos } =
+    useContext(CartContext);
+  // console.log(cartItem);
+  // console.log
+  // const incrementNumberOfKilos = (cartItem) => {
+  //   cartItem.numberOfKilos += 1;
+  // };
+  // console.log(cartItem);
   return (
     <View>
       <View style={styles.card}>
@@ -36,7 +42,7 @@ const CartCard = ({
             }}
           >
             <Image
-              source={cartItem.image}
+              source={cartItem?.image}
               style={{ width: 170, height: 120 }}
             />
           </View>
@@ -49,23 +55,25 @@ const CartCard = ({
                 color: "green",
               }}
             >
-              Number of Kilos {cartItem.numberOfKilos}
+              Number of Kilos {cartItem?.numberOfKilos}
             </Text>
           </View>
         </View>
         <View style={styles.textsWrapper}>
-          <Text style={styles.foodName}>{cartItem.name}</Text>
+          <Text style={styles.foodName}>{cartItem?.name}</Text>
           {/* Food prices */}
           <View style={styles.priceWrapper}>
             <View style={{ flexDirection: "row" }}>
-              <Text style={styles.foodPrice}>D{cartItem.pricePerKg}</Text>
+              <Text style={styles.foodPrice}>D{cartItem?.pricePerKg}</Text>
               <Text>/</Text>
               <Text>kg</Text>
             </View>
             <View style={{ flexDirection: "row", columnGap: 10 }}>
               <Text>Unit Price</Text>
               <Text style={styles.foodPrice}>
-                {cartItem.unitPrice !== "N/A" ? `D${cartItem.unitPrice}` : "-"}
+                {cartItem?.unitPrice !== "N/A"
+                  ? `D${cartItem?.unitPrice}`
+                  : "-"}
               </Text>
             </View>
           </View>
