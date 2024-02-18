@@ -37,6 +37,8 @@ const CartContextProvider = ({ children }) => {
   };
   //
   const incrementNumberOfKilos = (item) => {
+    // I am using this method of updating the cartList item because i am trying to avoid reference error
+    // Since both cartlist and fruitslist both share a similar array of objects
     const indexofItemToIncrement = cartList.findIndex(
       (cart) => cart?.id === item?.id
     );
@@ -44,7 +46,8 @@ const CartContextProvider = ({ children }) => {
     if (indexofItemToIncrement !== -1) {
       // Create a shallow copy of the cartList
       const updatedCartList = [...cartList];
-      const itemToIncrement = updatedCartList[indexofItemToIncrement];
+      // so this is deep copy
+      const itemToIncrement = { ...updatedCartList[indexofItemToIncrement] };
 
       // Update the kilos for the specific item
       itemToIncrement.numberOfKilos += 1;
@@ -53,6 +56,8 @@ const CartContextProvider = ({ children }) => {
       const newCartCost = item.pricePerKg + cartCost;
       setCartCost(newCartCost);
 
+      // replace the existing one with the new one
+      updatedCartList[indexofItemToIncrement] = itemToIncrement;
       // Update the state with the new cartList
       setCartList(updatedCartList);
     } else {
@@ -60,12 +65,6 @@ const CartContextProvider = ({ children }) => {
     }
   };
 
-  //
-  // const removeFromListIfNumberOfKilosIsZero = (item) => {
-  //   const newList = cartList.filter((cart) => item?.id != cart?.id);
-  //   setCartList([...newList]);
-  // };
-  //
   const decrementNumberOfKilos = (item) => {
     cartList?.map((cart) => {
       cart.id === item.id
@@ -75,9 +74,6 @@ const CartContextProvider = ({ children }) => {
           : console.log("Cannot go down!")
         : cart.numberOfKilos;
     });
-    // setCartList([...newCartList]);
-    // setCartCost((prev) => prev - item?.pricePerKg);
-    // removeFromListIfNumberOfKilosIsZero();
   };
   //
   const decrementCartCost = (item) => {};

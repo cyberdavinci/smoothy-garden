@@ -14,7 +14,8 @@ const FruitsList = () => {
   // const handleAddToCart = (item) => {
   //   addToCart(item);
   // };
-  console.log(foods[0]);
+  console.log(foods[0]?.numberOfKilos);
+  console.log(cartList[0]?.numberOfKilos);
   return (
     <View>
       <View style={{ marginVertical: 10 }}>

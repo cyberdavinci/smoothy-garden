@@ -10,11 +10,10 @@ const CategoriesList = () => {
       showsHorizontalScrollIndicator={false}
     >
       <View style={{ flexDirection: "row", columnGap: 10 }}>
-        {foodCategory.map((category, index) => (
-          <>
-            <CategoryCard category={category} key={index.toString()} />
-          </>
-        ))}
+        {foodCategory.map((category, index) => {
+          console.log(category.id);
+          return <CategoryCard category={category} key={category.id} />;
+        })}
       </View>
     </ScrollView>
   );

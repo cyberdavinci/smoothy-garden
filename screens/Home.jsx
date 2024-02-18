@@ -8,7 +8,7 @@ import HeroCard from "../components/Home/HeroCard";
 const Home = () => {
   return (
     <View>
-      <UserAvatar />
+      {/* <UserAvatar /> */}
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 30, backgroundColor: "#fff" }}

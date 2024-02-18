@@ -14,19 +14,10 @@ const CartList = ({ cartList }) => {
   // const { cartList } = useContext(CartContext);
   return (
     <View>
-      {/* <View style={{ marginVertical: 10 }}>
-        <Text style={{ fontSize: 25, fontWeight: "bold" }}>Hello Carts!</Text>
-      </View> */}
-
       {cartList?.length > 0 ? (
         cartList.map((cartItem, index) => (
           <>
-            <CartCard
-              cartItem={cartItem}
-              key={index.toString()}
-              // incrementNumberOfKilos={incrementNumberOfKilos}
-              // decrementNumberOfKilos={decrementNumberOfKilos}
-            />
+            <CartCard cartItem={cartItem} key={cartItem?.name} />
           </>
         ))
       ) : (

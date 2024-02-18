@@ -17,7 +17,7 @@ const CartDashBoard = () => {
     <View style={{ height: "100%" }}>
       <LinearGradient
         // colors={["rgba(76, 175, 80, 1)", "transparent"]}
-        colors={["#4c669f", "#3b5998", "#192f6a"]}
+        colors={["#11998E", "#38EF7D"]}
         style={styles.gradientCardBg}
       >
         <View

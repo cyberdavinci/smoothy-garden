@@ -7,6 +7,8 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { CartContextProvider, CartContext } from "./Context/CartContext";
 import Welcome from "./screens/Welcome";
+import Register from "./screens/Register";
+import Login from "./screens/Login";
 import MainLayout from "./screens/MainLayout";
 
 const Stack = createNativeStackNavigator();
@@ -19,6 +21,8 @@ export default function App() {
           <Stack.Navigator screenOptions={{ headerShown: false }}>
             {/* <Stack.Screen name="Welcome" component={Welcome} /> */}
             <Stack.Screen name="main" component={MainLayout} />
+            <Stack.Screen name="register" component={Register} />
+            <Stack.Screen name="login" component={Register} />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaProvider>
