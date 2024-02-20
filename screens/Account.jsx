@@ -17,10 +17,10 @@ import Order from "../components/Account/Order";
 import Delivery from "../components/Account/Delivery";
 const { height } = Dimensions.get("screen");
 
-const SelectedSegment = ({ selectedOption }) => {
+const SelectedSegment = ({ selectedOption, navigation }) => {
   switch (selectedOption) {
     case "Profile":
-      return <Profile />;
+      return <Profile navigation={navigation} />;
     case "Orders":
       return <Order />;
     case "Delivery":
@@ -51,7 +51,10 @@ const Account = ({ navigation }) => {
           }
         }
       >
-        <SelectedSegment selectedOption={selectedOption} />
+        <SelectedSegment
+          selectedOption={selectedOption}
+          navigation={navigation}
+        />
       </View>
     </View>
   );

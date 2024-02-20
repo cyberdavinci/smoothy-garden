@@ -9,14 +9,14 @@ import {
 } from "react-native";
 import React from "react";
 const { width, height } = Dimensions.get("screen");
-const EmailandPassword = ({ toggleStep, setNewUser, navigation }) => {
+const EmailandPassword = ({ toggleStep, setNewUser, navigation, newUser }) => {
   return (
     <View
       style={{
         // flex: 1,
         alignItems: "center",
         justifyContent: "center",
-        height: "50%",
+        height: "36%",
         paddingHorizontal: 15,
         gap: 15,
       }}
@@ -24,16 +24,15 @@ const EmailandPassword = ({ toggleStep, setNewUser, navigation }) => {
       <TouchableOpacity style={styles.backBtn} onPress={() => toggleStep()}>
         <Text style={styles.nextBtnText}>Back</Text>
       </TouchableOpacity>
-      <Image
-        source={require("../../assets/nobg-icon.png")}
-        style={styles.logo}
-      />
 
       <TextInput
         placeholder="Email"
         style={styles.input}
         placeholderTextColor={"#fff"}
         inputMode="email"
+        onChangeText={(value) =>
+          setNewUser((prev) => ({ ...prev, email: value }))
+        }
       />
       <TextInput
         placeholder="Password"
@@ -41,12 +40,20 @@ const EmailandPassword = ({ toggleStep, setNewUser, navigation }) => {
         style={styles.input}
         placeholderTextColor={"#fff"}
         inputMode="text"
+        onChangeText={(value) =>
+          setNewUser((prev) => ({ ...prev, password: value }))
+        }
       />
 
       <TouchableOpacity style={styles.submitBtn}>
         <Text
           style={styles.submitBtnText}
-          onPress={() => navigation.navigate("main")}
+          onPress={() => {
+            newUser?.email !== "" && newUser?.password !== ""
+              ? console.log(newUser)
+              : null;
+            // navigation.navigate("main");
+          }}
         >
           Submit
         </Text>
@@ -58,12 +65,6 @@ const EmailandPassword = ({ toggleStep, setNewUser, navigation }) => {
 export default EmailandPassword;
 
 const styles = StyleSheet.create({
-  logo: {
-    width: "100%",
-    height: "40%",
-    resizeMode: "contain",
-  },
-
   input: {
     borderWidth: 3,
     borderColor: "#fff",
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
   },
   backBtn: {
     position: "absolute",
-    top: 20,
+    top: -height * 0.2,
     left: 20,
     backgroundColor: "#fff",
     paddingVertical: 5,

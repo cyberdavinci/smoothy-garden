@@ -10,22 +10,22 @@ import {
   Image,
 } from "react-native";
 const { width, height } = Dimensions.get("screen");
-const NameandPhone = ({ toggleStep, setNewUser }) => {
+const NameandPhone = ({ toggleStep, setNewUser, newUser }) => {
   return (
     <View
       style={{
         // flex: 1,
         alignItems: "center",
         justifyContent: "center",
-        height: "50%",
+        height: "36%",
         paddingHorizontal: 15,
         gap: 15,
       }}
     >
-      <Image
+      {/* <Image
         source={require("../../assets/nobg-icon.png")}
         style={styles.logo}
-      />
+      /> */}
 
       <TextInput
         placeholder="Full name"
@@ -33,15 +33,26 @@ const NameandPhone = ({ toggleStep, setNewUser }) => {
         placeholderTextColor={"#fff"}
         inputMode="text"
         cursorColor={"#4c566a"}
+        onChangeText={(value) =>
+          setNewUser((prev) => ({ ...prev, fullName: value }))
+        }
       />
       <TextInput
         placeholder="Phone number"
         style={styles.input}
         placeholderTextColor={"#fff"}
         inputMode="tel"
+        onChangeText={(value) =>
+          setNewUser((prev) => ({ ...prev, phone: value }))
+        }
       />
 
-      <TouchableOpacity style={styles.nextBtn} onPress={() => toggleStep()}>
+      <TouchableOpacity
+        style={styles.nextBtn}
+        onPress={() =>
+          newUser?.fullName !== "" && newUser?.phone !== "" ? toggleStep() : ""
+        }
+      >
         <Text style={styles.nextBtnText}>Next</Text>
       </TouchableOpacity>
     </View>
@@ -51,11 +62,6 @@ const NameandPhone = ({ toggleStep, setNewUser }) => {
 export default NameandPhone;
 
 const styles = StyleSheet.create({
-  logo: {
-    width: "100%",
-    height: "40%",
-    resizeMode: "contain",
-  },
   input: {
     borderWidth: 3,
     borderColor: "#fff",

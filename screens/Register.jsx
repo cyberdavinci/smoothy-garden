@@ -5,11 +5,13 @@ import {
   TextInput,
   KeyboardAvoidingView,
   Dimensions,
+  Image,
 } from "react-native";
 import NameandPhone from "../components/Register/NameandPhone";
 import EmailandPassword from "../components/Register/EmailandPassword";
 import React, { useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 const { width, height } = Dimensions.get("screen");
 const Register = ({ navigation }) => {
   const [currentStep, setCurrentStep] = useState("namePhone");
@@ -24,23 +26,30 @@ const Register = ({ navigation }) => {
       ? setCurrentStep("emailPassword")
       : setCurrentStep("namePhone");
   };
-  const submit = () => {
-    console.log(newUser);
-  };
+
   return (
-    <View style={{ flex: 1, paddingVertical: 10 }}>
+    <View style={{ flex: 1 }}>
       <LinearGradient
         style={styles.innerLayout}
         colors={["#11998E", "#38EF7D"]}
       >
+        <Image
+          source={require("../assets/nobg-icon.png")}
+          style={styles.logo}
+        />
         <Text style={styles.title}>Register</Text>
         {currentStep == "namePhone" ? (
-          <NameandPhone setNewUser={setNewUser} toggleStep={toggleStep} />
+          <NameandPhone
+            setNewUser={setNewUser}
+            toggleStep={toggleStep}
+            newUser={newUser}
+          />
         ) : (
           <EmailandPassword
             setNewUser={setNewUser}
             toggleStep={toggleStep}
-            submit={submit}
+            // submit={submit}
+            newUser={newUser}
             navigation={navigation}
           />
         )}
@@ -57,5 +66,17 @@ const styles = StyleSheet.create({
   innerLayout: {
     width: width,
     height: height,
+  },
+  logo: {
+    width: "50%",
+    height: "20%",
+    resizeMode: "contain",
+    alignSelf: "center",
+  },
+  title: {
+    fontSize: 20,
+    textAlign: "center",
+    color: "#fff",
+    fontWeight: "bold",
   },
 });

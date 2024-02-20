@@ -2,30 +2,27 @@ import { StatusBar } from "expo-status-bar";
 // import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-
-import { CartContextProvider, CartContext } from "./Context/CartContext";
-import Welcome from "./screens/Welcome";
+import { UserContext, UserContextProvider } from "./Context/UserContext";
+import { CartContextProvider } from "./Context/CartContext";
+// import Welcome from "./screens/Welcome";
 import Register from "./screens/Register";
 import Login from "./screens/Login";
 import MainLayout from "./screens/MainLayout";
 
+import Navigation from "./components/Navigation/Navigation";
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  // const
   return (
-    <CartContextProvider>
-      <SafeAreaProvider>
-        <NavigationContainer>
-          <Stack.Navigator screenOptions={{ headerShown: false }}>
-            {/* <Stack.Screen name="Welcome" component={Welcome} /> */}
-            <Stack.Screen name="main" component={MainLayout} />
-            <Stack.Screen name="register" component={Register} />
-            <Stack.Screen name="login" component={Register} />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </SafeAreaProvider>
-    </CartContextProvider>
+    <UserContextProvider>
+      <CartContextProvider>
+        <SafeAreaProvider>
+          <Navigation />
+        </SafeAreaProvider>
+      </CartContextProvider>
+    </UserContextProvider>
   );
 }

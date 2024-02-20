@@ -43,7 +43,9 @@ const Profile = ({ navigation }) => {
             source={require("../../assets/profileimg.png")}
             style={styles.profileImg}
           />
-          <Text>Smoothy</Text>
+          <Text style={{ fontSize: 17, fontWeight: "bold", color: "#333" }}>
+            Smoothy
+          </Text>
 
           <View></View>
         </View>
@@ -54,7 +56,10 @@ const Profile = ({ navigation }) => {
         >
           <Text style={styles.btnText}>Login</Text>
         </Pressable> */}
-        <Pressable style={styles.btn}>
+        <Pressable
+          style={styles.btn}
+          onPress={() => navigation.navigate("register")}
+        >
           <Text style={styles.btnText}>Log Out!</Text>
         </Pressable>
       </ScrollView>
