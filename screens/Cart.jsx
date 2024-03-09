@@ -16,12 +16,12 @@ import { CartContext } from "../Context/CartContext";
 //
 const { width, height } = Dimensions.get("window");
 //
-const Cart = () => {
+const Cart = ({ navigation }) => {
   const { clearCart, cartList } = useContext(CartContext);
   return (
     <View>
       <View style={{ height: height * 0.35 }}>
-        <CartDashBoard />
+        <CartDashBoard navigation={navigation} />
       </View>
       <ScrollView style={{ marginBottom: 300 }}>
         <View

@@ -1,6 +1,6 @@
 import { AntDesign } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   View,
   Text,
@@ -10,8 +10,10 @@ import {
   useWindowDimensions,
   ScrollView,
 } from "react-native";
+import { UserContext } from "../../Context/UserContext";
 
 const Profile = ({ navigation }) => {
+  const { user, logoutUser } = useContext(UserContext);
   const [selectedOption, setSelectedOption] = useState("Profile");
   const options = ["Profile", "Orders", "Delivery"];
   const { width: windowWidth, height } = useWindowDimensions();
@@ -44,7 +46,7 @@ const Profile = ({ navigation }) => {
             style={styles.profileImg}
           />
           <Text style={{ fontSize: 17, fontWeight: "bold", color: "#333" }}>
-            Smoothy
+            {user?.fullName}
           </Text>
 
           <View></View>
@@ -56,10 +58,7 @@ const Profile = ({ navigation }) => {
         >
           <Text style={styles.btnText}>Login</Text>
         </Pressable> */}
-        <Pressable
-          style={styles.btn}
-          onPress={() => navigation.navigate("register")}
-        >
+        <Pressable style={styles.btn} onPress={() => logoutUser()}>
           <Text style={styles.btnText}>Log Out!</Text>
         </Pressable>
       </ScrollView>

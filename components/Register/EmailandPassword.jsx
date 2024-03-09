@@ -7,9 +7,11 @@ import {
   Dimensions,
   Image,
 } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "../../Context/UserContext";
 const { width, height } = Dimensions.get("screen");
 const EmailandPassword = ({ toggleStep, setNewUser, navigation, newUser }) => {
+  const { submit } = useContext(UserContext);
   return (
     <View
       style={{
@@ -50,7 +52,7 @@ const EmailandPassword = ({ toggleStep, setNewUser, navigation, newUser }) => {
           style={styles.submitBtnText}
           onPress={() => {
             newUser?.email !== "" && newUser?.password !== ""
-              ? console.log(newUser)
+              ? submit(newUser)
               : null;
             // navigation.navigate("main");
           }}

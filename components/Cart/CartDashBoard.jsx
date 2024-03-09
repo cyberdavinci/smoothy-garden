@@ -1,13 +1,16 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Text, View, StyleSheet, Pressable } from "react-native";
+import { Text, View, StyleSheet, Pressable, Image } from "react-native";
+
 import { LinearGradient } from "expo-linear-gradient";
 import { CartContext } from "../../Context/CartContext";
 import { AntDesign } from "@expo/vector-icons";
 import { FOODS } from "../../data/products";
-const CartDashBoard = () => {
+import { UserContext } from "../../Context/UserContext";
+const CartDashBoard = ({ navigation }) => {
   const [cartCostAmount, setCartCost] = useState(0);
 
   const { cartList, cartCost } = useContext(CartContext);
+  const { user } = useContext(UserContext);
   // console.log(cartList);
   // console.log(FOODS[0]);
   // useEffect(() => {
@@ -30,9 +33,12 @@ const CartDashBoard = () => {
         >
           {/* user progile */}
           <View style={{ alignItems: "center" }}>
-            <AntDesign name="user" size={45} color="#fff" />
+            <Image
+              source={require("../../assets/profileimg.png")}
+              style={styles.profileImg}
+            />
             <Text style={{ color: "#fff", fontSize: 16, fontWeight: "800" }}>
-              Smoothy!
+              {user?.fullName?.split(" ")[0]}!
             </Text>
           </View>
           {/* cart cost update */}
@@ -54,6 +60,7 @@ const CartDashBoard = () => {
               backgroundColor: "#3b5998",
               borderRadius: 20,
             }}
+            onPress={() => navigation.navigate("checkout")}
           >
             <Text
               style={{
@@ -74,6 +81,12 @@ const CartDashBoard = () => {
 const styles = StyleSheet.create({
   gradientCardBg: {
     height: "100%",
+  },
+  profileImg: {
+    width: 120,
+    height: 120,
+    borderRadius: 30,
+    resizeMode: "contain",
   },
 });
 export default CartDashBoard;

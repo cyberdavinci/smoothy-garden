@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 // import { FontAwesome5 } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
+import { UserContext } from "../../Context/UserContext";
 
 const UserAvatar = () => {
+  const { user } = useContext(UserContext);
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -18,7 +20,9 @@ const UserAvatar = () => {
             source={require("../../assets/profileimg.png")}
             style={{ width: 50, height: 50 }}
           />
-          <Text style={styles.title}>Howdy, smoothy?</Text>
+          <Text style={styles.title}>
+            Howdy, {user?.fullName?.split(" ")[0]}
+          </Text>
         </View>
         {/* bell */}
         <View>

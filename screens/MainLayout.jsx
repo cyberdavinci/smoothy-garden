@@ -4,7 +4,7 @@ import { StatusBar } from "expo-status-bar";
 const MainLayout = () => {
   return (
     <>
-      <StatusBar backgroundColor="#11998E" style="light" />
+      <StatusBar backgroundColor="transparent" style="dark" />
       <BottomNav />
     </>
   );
