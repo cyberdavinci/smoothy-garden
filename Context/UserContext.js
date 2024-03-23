@@ -1,8 +1,7 @@
 /*
-***********************************************
+**************************************************************************
 We can have all our authentication and user specific related context here
-Still thinking where to place the cart context!
-***********************************************
+***************************************************************************
 */
 
 import { useState, createContext } from "react";
@@ -35,7 +34,7 @@ const UserContextProvider = ({ children }) => {
 */
   const submit = async (values) => {
     setIsLoggin(true);
-    const { fullName, phone, email, password } = values;
+    // const { fullName, phone, email, password } = values;
     try {
       await AsyncStorage.setItem("user", JSON.stringify(values));
       setUser(values);
@@ -68,7 +67,7 @@ const UserContextProvider = ({ children }) => {
     isLogged: isLogged,
     isLogging,
     user: user,
-    getUser: getUser,
+    getUser: () => getUser(),
     logoutUser: () => logoutUser(),
   };
   return (

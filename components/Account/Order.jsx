@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
+import { CartContext } from "../../Context/CartContext";
 const { height } = Dimensions.get("screen");
 const Order = () => {
+  const { orders } = useContext(CartContext);
+
   return (
     <View
       style={{
@@ -13,9 +16,13 @@ const Order = () => {
         alignItems: "center",
       }}
     >
-      <Text style={{ fontSize: 20, fontWeight: "bold", color: "#333" }}>
-        Orders
-      </Text>
+      {orders?.length > 0 ? (
+        <View></View>
+      ) : (
+        <Text style={{ fontSize: 20, fontWeight: "bold", color: "#333" }}>
+          No Orders Here!
+        </Text>
+      )}
     </View>
   );
 };

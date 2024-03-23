@@ -17,18 +17,24 @@ const Navigation = ({}) => {
   useEffect(() => {
     getUser();
   }, [isLogged]);
-  console.log(isLogged);
+  // console.log(isLogged);
   return (
     <NavigationContainer>
-      <StatusBar style="light" />
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <StatusBar style="light" backgroundColor="#11998E" />
+      <Stack.Navigator
+        screenOptions={{ headerShown: false, navigationBarColor: "#fff" }}
+      >
         {isLogged ? (
           <>
             <Stack.Screen name="main" component={MainLayout} />
             <Stack.Screen name="checkout" component={Checkout} />
           </>
         ) : (
-          <Stack.Screen name="register" component={Register} />
+          <Stack.Screen
+            name="register"
+            component={Register}
+            options={{ navigationBarColor: "#38EF7D" }}
+          />
         )}
       </Stack.Navigator>
     </NavigationContainer>

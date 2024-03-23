@@ -22,8 +22,9 @@ const Home = () => {
         contentContainerStyle={{
           paddingBottom: 30,
           backgroundColor: "#fff",
-          // height: height,
+          // height: "100%",
         }}
+        nestedScrollEnabled
       >
         {/* <HeroCard /> */}
 

@@ -104,7 +104,7 @@ const BottomNav = () => {
       screenOptions={screenOptions}
       sceneContainerStyle={{
         paddingTop: safeArea.top,
-        paddingBottom: safeArea.bottom,
+        // paddingBottom: safeArea.bottom,
         // paddingBottom: 50,
         // marginBottom: 40,
         backgroundColor: "#fff",

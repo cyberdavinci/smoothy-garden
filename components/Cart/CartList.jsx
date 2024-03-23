@@ -16,14 +16,14 @@ const CartList = ({ cartList }) => {
     <View>
       {cartList?.length > 0 ? (
         cartList.map((cartItem, index) => (
-          <>
-            <CartCard cartItem={cartItem} key={cartItem?.name} />
-          </>
+          <CartCard cartItem={cartItem} key={cartItem?.name} />
         ))
       ) : (
         <View style={{ marginVertical: 10 }}>
-          <Text style={{ fontSize: 22, fontWeight: "bold" }}>
-            Your Cart's Empty
+          <Text
+            style={{ fontSize: 22, fontWeight: "bold", textAlign: "center" }}
+          >
+            Your Cart's Empty!
           </Text>
         </View>
       )}

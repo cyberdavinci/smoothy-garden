@@ -57,21 +57,25 @@ const CartDashBoard = ({ navigation }) => {
         <View style={{ alignItems: "center" }}>
           <Pressable
             style={{
-              backgroundColor: "#3b5998",
+              backgroundColor: "#11998E",
               borderRadius: 20,
+              flexDirection: "row",
+              alignItems: "center",
+              paddingVertical: 10,
+              paddingHorizontal: 30,
             }}
             onPress={() => navigation.navigate("checkout")}
           >
             <Text
               style={{
                 color: "#fff",
-                paddingVertical: 10,
-                paddingHorizontal: 30,
+                fontWeight: "bold",
                 fontSize: 16,
               }}
             >
               CHECKOUT!
             </Text>
+            <AntDesign name="arrowright" size={28} color="#fff" />
           </Pressable>
         </View>
       </LinearGradient>

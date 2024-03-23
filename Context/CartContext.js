@@ -6,6 +6,7 @@ const CartContextProvider = ({ children }) => {
   const [cartCost, setCartCost] = useState(0.0);
   const [numberOfKilos, setNumberOfKilos] = useState(1);
   const [currentCartID, setCurrentCartId] = useState(0);
+  const [orders, setOrders] = useState([]);
   //
   const checkIfCartExist = (item) => {
     const itemIndex = cartList.findIndex(
@@ -108,6 +109,7 @@ const CartContextProvider = ({ children }) => {
       removeFromCart(item);
     },
     cartList: cartList,
+    orders: orders,
     currentCartID: currentCartID,
     cartCost: cartCost,
   };
