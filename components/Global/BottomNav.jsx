@@ -49,7 +49,7 @@ const BottomNav = () => {
         case "Chat":
           return (
             <Ionicons
-              name="md-chatbubbles-outline"
+              name="chatbubbles-outline"
               size={24}
               color={`${focused ? "#DD3333" : "gray"}`}
             />
@@ -57,7 +57,7 @@ const BottomNav = () => {
         case "Cart":
           return (
             <Ionicons
-              name="md-cart-outline"
+              name="cart-outline"
               size={24}
               color={`${focused ? "#DD3333" : "gray"}`}
             />

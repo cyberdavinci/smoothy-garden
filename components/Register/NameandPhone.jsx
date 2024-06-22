@@ -17,16 +17,11 @@ const NameandPhone = ({ toggleStep, setNewUser, newUser }) => {
         // flex: 1,
         alignItems: "center",
         justifyContent: "center",
-        height: "36%",
+        // height: "36%",
         paddingHorizontal: 15,
         gap: 15,
       }}
     >
-      {/* <Image
-        source={require("../../assets/nobg-icon.png")}
-        style={styles.logo}
-      /> */}
-
       <TextInput
         placeholder="Full name"
         style={styles.input}

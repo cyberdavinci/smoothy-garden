@@ -32,7 +32,7 @@ const UserContextProvider = ({ children }) => {
 
 ****************************
 */
-  const submit = async (values) => {
+  const register = async (values) => {
     setIsLoggin(true);
     // const { fullName, phone, email, password } = values;
     try {
@@ -43,6 +43,17 @@ const UserContextProvider = ({ children }) => {
       console.log(error);
     } finally {
       setIsLoggin(false);
+    }
+  };
+
+  const login = async (values) => {
+    try {
+      await AsyncStorage.setItem("user", JSON.stringify(values));
+      setUser(values);
+      setIsLogged(true);
+    } catch (err) {
+    } finally {
+      setIsLogged(false);
     }
   };
   const logoutUser = async () => {
@@ -63,7 +74,8 @@ const UserContextProvider = ({ children }) => {
 ****************************
 */
   const contextData = {
-    submit: (values) => submit(values),
+    register: (values) => register(values),
+    login: (values) => login(values),
     isLogged: isLogged,
     isLogging,
     user: user,

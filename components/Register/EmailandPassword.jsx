@@ -11,7 +11,7 @@ import React, { useContext } from "react";
 import { UserContext } from "../../Context/UserContext";
 const { width, height } = Dimensions.get("screen");
 const EmailandPassword = ({ toggleStep, setNewUser, navigation, newUser }) => {
-  const { submit } = useContext(UserContext);
+  const { register } = useContext(UserContext);
   return (
     <View
       style={{
@@ -52,12 +52,12 @@ const EmailandPassword = ({ toggleStep, setNewUser, navigation, newUser }) => {
           style={styles.submitBtnText}
           onPress={() => {
             newUser?.email !== "" && newUser?.password !== ""
-              ? submit(newUser)
+              ? register(newUser)
               : null;
             // navigation.navigate("main");
           }}
         >
-          Submit
+          Register
         </Text>
       </TouchableOpacity>
     </View>

@@ -30,11 +30,24 @@ const Navigation = ({}) => {
             <Stack.Screen name="checkout" component={Checkout} />
           </>
         ) : (
-          <Stack.Screen
-            name="register"
-            component={Register}
-            options={{ navigationBarColor: "#38EF7D" }}
-          />
+          <>
+            <Stack.Screen
+              name="login"
+              component={Login}
+              options={{
+                navigationBarColor: "#38EF7D",
+                contentStyle: { backgroundColor: "#11998E" },
+              }}
+            />
+            <Stack.Screen
+              name="register"
+              component={Register}
+              options={{
+                navigationBarColor: "#38EF7D",
+                contentStyle: { backgroundColor: "#11998E" },
+              }}
+            />
+          </>
         )}
       </Stack.Navigator>
     </NavigationContainer>
